@@ -1,15 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   {% include "./main.html" %}
-   교직원 소개 
-  <a href="/admin/addteacher">교직원 추가</a>
-  
+  <div>
+    <table>
+      <thead>
+        <td>이름</td>
+        <td>직위</td>
+        <td>헤드라인</td>
+        <td>경력</td>
+        <td>내용</td>
+        <td>이미지</td>
+        <td>공개/비공개</td>
+        <td>삭제</td>
+      </thead>
+      <tbody>
+        {% for item in result%}
+        <tr>
+          <td>{{item.name}}</td>
+          <td>{{item.position}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.career}}</td>
+          <td>{{item.content}}</td>
+          <td>{{item.img}}</td>
+          <td>
+            {% if show=='0' %}
+            <input type="button" value="공개" name="{{item.id}}">
+            {% else %}
+            <input type="button" value="비공개" name="{{item.id}}">
+            {% endif %}
+          </td>
+        </tr>
+        <td>
+          <input type="button" value="삭제" name="{{item.id}}">
+        </td>
+      </tbody>
+    </table>
+
+    
+    <a href="/admin/addteacher">교직원 추가</a>
+  </div>
+
+
+
 </body>
+
 </html>
