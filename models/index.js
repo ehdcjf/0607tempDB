@@ -26,6 +26,8 @@ db.Sequelize = Sequelize;
 db.board = models.board;
 db.board_image = models.board_image;
 db.consult = models.consult;
+db.history = models.history;
+db.teacher = models.teacher;
 
 // const { 
 //   curr_faq,
@@ -35,6 +37,6 @@ db.consult = models.consult;
 //   sboard,
 //   sboard_image,
 //   subject,
-//   teacher, } 
+//   , } 
 
 module.exports = db;

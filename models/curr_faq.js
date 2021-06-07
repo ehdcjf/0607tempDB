@@ -1,6 +1,12 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('curr_faq', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     curr_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -22,6 +28,14 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'curr_faq',
     timestamps: false,
     indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id" },
+        ]
+      },
       {
         name: "FK_curr_faq_board",
         using: "BTREE",

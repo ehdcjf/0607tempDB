@@ -1,6 +1,12 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('history', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     year: {
       type: DataTypes.SMALLINT.UNSIGNED,
       allowNull: false
@@ -13,6 +19,18 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'history',
-    timestamps: false
+    timestamps: false,
+    charset:"utf8mb4",
+  collate:"utf8mb4_general_ci",
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id" },
+        ]
+      },
+    ]
   });
 };

@@ -2,12 +2,13 @@ const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('teacher', {
     id: {
+      autoIncrement: true,
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: false,
       primaryKey: true
     },
     name: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(100),
       allowNull: false
     },
     position: {
@@ -26,14 +27,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    iamge: {
+      type: DataTypes.STRING(1000),
+      allowNull: false,
+      defaultValue: ""
+    },
     show: {
       type: DataTypes.TINYINT.UNSIGNED,
-      allowNull: false
+      allowNull: true,
+      defaultValue: 0
     }
   }, {
     sequelize,
     tableName: 'teacher',
     timestamps: false,
+    charset:"utf8mb4",
+    collate:"utf8mb4_general_ci",
     indexes: [
       {
         name: "PRIMARY",
@@ -46,3 +55,4 @@ module.exports = function(sequelize, DataTypes) {
     ]
   });
 };
+
