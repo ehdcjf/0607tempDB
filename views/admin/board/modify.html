@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{result.subject}} 수정</title>
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded',()=>{
+    const content = document.querySelector('#content');
+    const pre = document.querySelector('#pre');
+      pre.innerHTML = `${content.value}`; 
+    })
+  </script>
+</head>
+<body>
+  
+  <div>
+    <div>{{result.subject}} 수정</div>
+      <input type="hidden" name='id' id="id" value="{{result.id}}">
+      제목:<input type="text" name='subject' id="subject" value="{{result.subject}}">
+      {% include "./summernote_modify.html" %}
+
+  </div>
+  
+</body>
+</html>

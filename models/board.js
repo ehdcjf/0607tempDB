@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     date: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
+      allowNull: true,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },
     subject: {
@@ -32,7 +32,12 @@ module.exports = function(sequelize, DataTypes) {
     type: {
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: false
-    }
+    }, 
+    show: {
+      type: DataTypes.TINYINT.UNSIGNED,
+      allowNull: true,
+      defaultValue: 0
+    },
   }, {
     sequelize,
     tableName: 'board',

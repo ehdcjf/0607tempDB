@@ -8,7 +8,7 @@ const { board,
   sboard,
   sboard_image,
   subject,
-  teacher, } = require('../../models'); 
+  teacher, } = require('../models'); 
 
 
 let get_history = async(req,res)=>{ 
