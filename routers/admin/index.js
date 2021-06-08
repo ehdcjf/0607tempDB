@@ -1,6 +1,6 @@
-const express=require('express');
+const express = require('express');
 const router = express.Router();
-const mainRouter =require('./main');
+const mainRouter = require('./main');
 const userRouter = require('./user')
 const boardRouter = require('./board');
 const communityRouter = require('./community');
@@ -10,10 +10,10 @@ const jobRouter = require('./job');
 const consultRouter = require('./consult');
 
 // router.use('/board',boardRouter);
-// router.use('/community',communityRouter);
+router.use('/community', communityRouter);
 // router.use('/consult',consultRouter);
 // router.use('/curriculum',curriculumRouter);
-router.use('/info',infoRouter);
+router.use('/info', infoRouter);
 // router.use('/job', jobRouter);
 router.use('/main', mainRouter);
 // router.use('/user', userRouter);
