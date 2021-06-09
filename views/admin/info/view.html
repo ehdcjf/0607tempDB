@@ -14,7 +14,15 @@
       {% include "../layout/gnb.html" %}
       {% include "../layout/info_snb.html" %}
       <div id="main">
-       
+        <div>
+          <div>
+            {{result.subject}}
+          </div>
+          <pre>
+            {{result.content}}
+          </pre>
+          <a href="/admin/info/modify?id={{result.id}}">수정하기</a>
+        </div>
 
       </div>
     </div>

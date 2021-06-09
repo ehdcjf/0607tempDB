@@ -23,6 +23,7 @@
             <td>내용</td>
             <td>이미지</td>
             <td>공개/비공개</td>
+            <td>수정</td>
             <td>삭제</td>
           </thead>
           <tbody>
@@ -33,7 +34,7 @@
               <td>{{item.title}}</td>
               <td>{{item.career}}</td>
               <td>{{item.content}}</td>
-              <td><img src="http://localhost:3000/{{item.img}}"></td>
+              <td><img src="http://localhost:3000/{{item.image}}"alt="교직원 이미지"></td>
               <td>
                 {% if item.show=='0' %}
                 <input type="button" value="공개" name="{{item.id}}">
@@ -42,7 +43,10 @@
                 {% endif %}
               </td>
               <td>
-                <input type="button" value="삭제" name="{{item.id}}">
+                <a href="/admin/info/teacher/modify?id={{item.id}}">수정</a>
+              </td>
+              <td>
+                <a href="/admin/info/teacher/destroy?id={{item.id}}">삭제</a>
               </td>
             </tr>
             

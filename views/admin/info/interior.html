@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,20 +9,38 @@
   <link rel="stylesheet" href="/admin/css/index.css">
 
 </head>
+
 <body>
-  <div id = "wrap">
+  <div id="wrap">
     <div id="container1900">
       {% include "../layout/gnb.html" %}
       {% include "../layout/info_snb.html" %}
       <div id="main">
-       
+        <table>
+          <thead>
+          <td>사진</td>
+          <td>삭제</td>
+          </thead>
+          <tbody>
+            {% for item in result %}
+          <tr>
+            <td><img src="http://localhost:3000/{{item.content}}" alt="시설소개 사진"></td>
+            <td><a href="/admin/info/interior_dlt?id={{item.id}}">삭제</a></td>
+          </tr>
+          {% endfor %}
+
+          </tbody> 
+        </table>
+
+        <a href="/admin/info/interior_add">시설 소개 추가하기</a>
 
       </div>
     </div>
   </div>
 
- 
 
-  
+
+
 </body>
+
 </html>

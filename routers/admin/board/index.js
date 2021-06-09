@@ -32,9 +32,7 @@ const router = express.Router();
 // // router.post('/addhistory', historyController.add_history);
 
 
-// // router.get('/teacher', teacherController.get_teacher);
-// // router.get('/addteacher', teacherController.add_teacher);
-// // router.post('/create_teacher',upload.single('img'),teacherController.create_teacher);
+
 
 // router.get('/board/list',boardController.show_list); 
 // router.get('/board/write',boardController.show_editor); 

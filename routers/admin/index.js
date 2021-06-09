@@ -11,7 +11,7 @@ const consultRouter = require('./consult');
 
 // router.use('/board',boardRouter);
 router.use('/community', communityRouter);
-// router.use('/consult',consultRouter);
+router.use('/consult',consultRouter);
 // router.use('/curriculum',curriculumRouter);
 router.use('/info', infoRouter);
 // router.use('/job', jobRouter);

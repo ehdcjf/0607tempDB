@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,24 +14,15 @@
       {% include "../layout/gnb.html" %}
       {% include "../layout/info_snb.html" %}
       <div id="main">
-        <form action="/admin/info/create_teacher" method="post" enctype="multipart/form-data">
-          이름:<input type="text" name="name"><br>
-          직위:<input type="text" name="position"><br>
-          제목:<textarea name="title" id="" cols="30" rows="10"></textarea><br>
-          경력:<textarea name="career" id="" cols="30" rows="10"></textarea><br>
-          내용:<textarea name="content" id="" cols="30" rows="10"></textarea><br>
-          이미지:<input type="file" accept="image/*"  name ="img" onchange="setThumbnail(event);"><br>
-          <div id="thumbnail"></div>
-          
-          <input type="submit" value="등록">
+       
+        <form action="/admin/info/interior_add" method="post" enctype="multipart/form-data">
+        <input type="file" accept="image/*"  name = "img" onchange="setThumbnail(event);">
+        <input type="submit" value="등록">
         </form>
-        
 
       </div>
     </div>
   </div>
-
- 
   <script>
     function setThumbnail(event) {
       let reader = new FileReader();
@@ -44,9 +34,8 @@
       reader.readAsDataURL(event.target.files[0]);
     }
   </script>
-
+ 
 
   
 </body>
 </html>
-

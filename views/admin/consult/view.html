@@ -20,7 +20,8 @@
   <div id = "wrap">
     <div id="container1900">
       {% include "../layout/gnb.html" %}
-      {% include "../layout/community_snb.html" %}
+      {% include "../layout/consult_snb.html" %}
+
       <div id="main">
         <div>
           <h2>{{result.subject}}</h2>
@@ -29,8 +30,7 @@
           조회수<span>{{result.hit}}</span>
           <pre id ='pre'></pre>
           <input type="hidden" id ='content' value="{{result.content}}">
-          <a href="/admin/community/modify?id={{result.id}}">수정하기</a>
-          <a href="/admin/community/destroy?id={{result.id}}">삭제하기</a>
+          <a href="/admin/consult/destroy?id={{result.id}}">삭제하기</a>
          
         </div>
        

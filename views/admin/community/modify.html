@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/admin/css/index.css">
+
   <title>{{result.subject}} 수정</title>
   <script type="text/javascript">
     window.addEventListener('DOMContentLoaded',()=>{
@@ -14,14 +16,30 @@
   </script>
 </head>
 <body>
-  
-  <div>
-    <div>{{result.subject}} 수정</div>
-      <input type="hidden" name='id' id="id" value="{{result.id}}">
-      제목:<input type="text" name='subject' id="subject" value="{{result.subject}}">
-      {% include "./summernote_modify.html" %}
+  <div id="wrap">
+    <div id="container1900">
+      {% include "../layout/gnb.html" %}
+      {% include "../layout/community_snb.html" %}
+      <div id="main">
 
+        <div>
+          <div>{{result.subject}} 수정</div>
+            <input type="hidden" name='id' id="id" value="{{result.id}}">
+            제목:<input type="text" name='subject' id="subject" value="{{result.subject}}">
+            {% include "./summernote_modify.html" %}
+      
+        </div>
+          
+    
+
+
+      </div>
+    </div>
   </div>
+
+  
+  
+  
   
 </body>
 </html>
