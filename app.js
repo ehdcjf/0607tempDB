@@ -11,7 +11,7 @@ nunjucks.configure('views', {
   express: app,
 })
 
-app.use('/uploads',express.static('uploads')); 
+app.use('/uploads', express.static('uploads'));
 app.use(express.static('uploads/'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));

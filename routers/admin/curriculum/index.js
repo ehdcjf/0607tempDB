@@ -6,20 +6,22 @@ const path = require('path'); //npm install path
 
 /* 가져다쓰기 외우기 */
 const upload = multer({
-    storage:multer.diskStorage({
-        destination:function(req,file,callback){
-            callback(null,'uploads')//폴더명
+    storage: multer.diskStorage({
+        destination: function (req, file, callback) {
+            callback(null, 'uploads')//폴더명
         },
-        filename:function(req,file,callback){
-            callback(null,new Date().valueOf()+ path.extname(file.originalname))
+        filename: function (req, file, callback) {
+            callback(null, new Date().valueOf() + path.extname(file.originalname))
         } //path.extname(file.originalname)): 확장자 가져오는 코드
     }),
 })
 
-router.get('/curr',currController.show_curr);
-router.get('/curr/add',currController.create_curr);
+router.get('/curr', currController.show_curr);
+router.get('/curr/add', currController.add_curr);
+router.get('/subject/add', currController.subject_curr);
+router.post('/curr/add', upload.single('img'), currController.create_curr);
 // router.get('/control',currController.show_ctr);
-router.get('/subject',currController.show_sub);
+router.get('/subject', currController.show_sub);
 
 // router.get('/view', boardController.show_article);
 // router.get('/modify', boardController.show_modify);

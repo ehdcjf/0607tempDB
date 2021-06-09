@@ -28,6 +28,7 @@ db.board_image = models.board_image;
 db.consult = models.consult;
 db.history = models.history;
 db.teacher = models.teacher;
+db.curriculum = models.curriculum;
 
 // const { 
 //   curr_faq,

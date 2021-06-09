@@ -15,6 +15,12 @@
       {% include "../layout/curr_snb.html" %}
       <div id="main">
         <div>
+          <ul>
+            {% for item in resultArr%}
+            <li><a href="/admin/curriculum/curr/control?id{{item.id}}">{{item.name}}</a></li>
+            {% endfor %}
+          </ul>
+
           <a href="/admin/curriculum/curr/add">커리큘럼 추가</a>
         </div>
 
