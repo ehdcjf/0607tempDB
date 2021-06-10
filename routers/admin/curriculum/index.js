@@ -17,33 +17,16 @@ const upload = multer({
 })
 
 router.get('/curr', currController.show_curr);
-router.get('/curr/add', currController.add_curr);
-router.get('/subject/add', currController.subject_curr);
-router.post('/curr/add', upload.single('img'), currController.create_curr);
-// router.get('/control',currController.show_ctr);
 router.get('/subject', currController.show_sub);
-
-// router.get('/view', boardController.show_article);
-// router.get('/modify', boardController.show_modify);
-// router.post('/modify', boardController.modify_article);
-// router.get('/list',boardController.show_list);
-
-// router.get('/history', infoController.get_history);
-// router.post('/dlthistory', infoController.dlt_history);
-// router.post('/updatehistory',infoController.update_history);
-// router.post('/addhistory', infoController.add_history);
-
-// router.get('/interior_add',infoController.interior_add); 
-// router.post('/interior_add',upload.single('img'),infoController.create_interior); 
-
-// router.get('/teachers',infoController.get_teacher);
-// router.get('/teacher/add', infoController.add_teacher);
-// router.post('/create_teacher',upload.single('img'),infoController.create_teacher);
-// router.get('/teacher/modify',infoController.modify_teacher)
-// router.post('/teacher/modify',upload.single('img'),infoController.update_teacher)
-// router.get('/teacher/destroy',infoController.destroy_teacher)
-
-
+router.get('/curr/add', currController.add_curr);
+router.get('/subject/add', currController.add_sub);
+router.post('/curr/add', upload.single('img'), currController.create_curr);
+router.post('/subject/add', upload.single('img'), currController.create_sub);
+router.get('/subject/modify',currController.modify_sub); 
+router.post('/subject/modify',upload.single('img'),currController.update_sub); 
+router.get('/subject/destroy',currController.destroy_sub); 
+router.get('/curr/control',upload.single('img'),currController.control_curr)
+router.post('/curr/control',upload.single('img'),currController.update_curr)
 
 
 module.exports = router;

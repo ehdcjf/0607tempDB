@@ -38,7 +38,6 @@ let show_list = async (req, res) => {
 
   switch(type){
     case '2':
-      console.log(result); 
       res.render(`./admin/info/interior`, {
         type, result, title,
       })
@@ -157,7 +156,6 @@ let destroy_article = async (req, res) => {
     attributes: ['type'],
     where: { id, },
   });
-  console.log(result)
   let { type } = result.dataValues;
   let isDistroy = await board.destroy({
     where: { id, }

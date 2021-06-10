@@ -77,7 +77,6 @@ let add_teacher = (req,res)=>{
 }
 
 let create_teacher = async(req,res)=>{ 
-  console.log(req.body); 
   let {name,position,title,career,content} = req.body 
   let image = req.file.filename; 
   let result = await teacher.create({ 
@@ -101,8 +100,7 @@ let modify_teacher = async(req,res)=>{
 }
 
 let update_teacher = async (req,res)=>{
-  console.log(req.body); 
-  console.log(req.file); 
+
   let {name,position,title,career,content,id} = req.body 
   let image; 
   if(req.file==undefined){ 

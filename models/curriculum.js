@@ -46,11 +46,18 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: false,
       defaultValue: 1
-    }
+    },
+    image: {
+      type: DataTypes.STRING(1000),
+      allowNull: false,
+      defaultValue: ""
+    },
   }, {
     sequelize,
     tableName: 'curriculum',
     timestamps: false,
+    charset:"utf8mb4",
+    collate:"utf8mb4_general_ci",
     indexes: [
       {
         name: "PRIMARY",

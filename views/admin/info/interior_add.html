@@ -16,7 +16,7 @@
       <div id="main">
        
         <form action="/admin/info/interior_add" method="post" enctype="multipart/form-data">
-        <input type="file" accept="image/*"  name = "img" onchange="setThumbnail(event);">
+        <input type="file" accept="image/*"  name = "img" onchange="setThumbnail(event);" required>
         <input type="submit" value="등록">
         </form>
 
@@ -27,9 +27,11 @@
     function setThumbnail(event) {
       let reader = new FileReader();
       reader.onload =  (event)=> {
+        let thumbnail = document.querySelector("#thumbnail");
+        while ( thumbnail.hasChildNodes() ) { thumbnail.removeChild( thumbnail.firstChild ); }
         let img = document.createElement("img");
         img.setAttribute("src", event.target.result);
-        document.querySelector("#thumbnail").appendChild(img);
+        thumbnail.appendChild(img);
       };
       reader.readAsDataURL(event.target.files[0]);
     }

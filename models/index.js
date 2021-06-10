@@ -29,6 +29,9 @@ db.consult = models.consult;
 db.history = models.history;
 db.teacher = models.teacher;
 db.curriculum = models.curriculum;
+db.subject = models.subject;
+db.sboard = models.sboard;
+db.curr_sbj = models.curr_sbj;
 
 // const { 
 //   curr_faq,

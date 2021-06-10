@@ -11,9 +11,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       allowNull: false
     },
-    img: {
+    image: {
       type: DataTypes.STRING(1000),
-      allowNull: true
+      allowNull: false,
+      defaultValue: ""
     },
     content: {
       type: DataTypes.TEXT,
@@ -23,6 +24,8 @@ module.exports = function(sequelize, DataTypes) {
     sequelize,
     tableName: 'subject',
     timestamps: false,
+    charset:"utf8mb4",
+    collate:"utf8mb4_general_ci",
     indexes: [
       {
         name: "PRIMARY",
