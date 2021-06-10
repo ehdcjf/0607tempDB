@@ -24,8 +24,8 @@
             <div id="thumbnail">
               <img src="http://localhost:3000/{{result.image}}"alt="과목이미지">
             </div>
-            <input type="file" accept="image/*"  name ="img" onchange="setThumbnail(event);"><br>
             <input type="hidden" name ="origin_image" value="{{result.image}}">
+            <input type="file" accept="image/*"  name ="img" onchange="setThumbnail(event);"><br>
             
             <input type="submit" value="수정">
           </form>

@@ -32,18 +32,16 @@ module.exports = function(sequelize, DataTypes) {
     type: {
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: false
-    }, 
+    },
     show: {
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: true,
       defaultValue: 0
-    },
+    }
   }, {
     sequelize,
     tableName: 'board',
     timestamps: false,
-    charset:"utf8mb4",
-  collate:"utf8mb4_general_ci",
     indexes: [
       {
         name: "PRIMARY",

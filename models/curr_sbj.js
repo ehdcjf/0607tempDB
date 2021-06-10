@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    sub_id: {
+    sbj_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -47,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "FK__subject",
         using: "BTREE",
         fields: [
-          { name: "sub_id" },
+          { name: "sbj_id" },
         ]
       },
     ]

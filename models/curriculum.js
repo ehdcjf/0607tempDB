@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('curriculum', {
     id: {
       autoIncrement: true,
@@ -51,13 +51,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(1000),
       allowNull: false,
       defaultValue: ""
-    },
+    }
   }, {
     sequelize,
     tableName: 'curriculum',
     timestamps: false,
-    charset:"utf8mb4",
-    collate:"utf8mb4_general_ci",
     indexes: [
       {
         name: "PRIMARY",

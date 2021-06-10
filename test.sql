@@ -18,47 +18,36 @@ USE `test`;
 
 -- 테이블 test.board 구조 내보내기
 CREATE TABLE IF NOT EXISTS `board` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `writer` varchar(50) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date DEFAULT current_timestamp(),
   `subject` varchar(100) NOT NULL,
   `content` text NOT NULL,
   `hit` int(10) unsigned DEFAULT 0,
   `type` tinyint(3) unsigned NOT NULL,
+  `show` tinyint(3) unsigned DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 내보낼 데이터가 선택되어 있지 않습니다.
-
--- 테이블 test.board_image 구조 내보내기
-CREATE TABLE IF NOT EXISTS `board_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `board_id` int(10) unsigned NOT NULL,
-  `iamge` varchar(1000) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `FK__board` (`board_id`) USING BTREE,
-  CONSTRAINT `board_image_ibfk_1` FOREIGN KEY (`board_id`) REFERENCES `board` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 test.consult 구조 내보내기
 CREATE TABLE IF NOT EXISTS `consult` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `age` tinyint(3) unsigned NOT NULL DEFAULT 20,
-  `tel` varchar(50) NOT NULL,
+  `tel` varchar(50) CHARACTER SET utf8 NOT NULL,
   `date` datetime DEFAULT current_timestamp(),
-  `content` text NOT NULL,
+  `content` text CHARACTER SET utf8 NOT NULL,
   `read` tinyint(3) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 test.curriculum 구조 내보내기
 CREATE TABLE IF NOT EXISTS `curriculum` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `info` varchar(500) NOT NULL,
   `term` tinyint(4) NOT NULL DEFAULT 0,
@@ -67,9 +56,10 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
   `location` varchar(50) NOT NULL,
   `tuition` varchar(50) NOT NULL,
   `qual` varchar(50) NOT NULL,
-  `show` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `show` tinyint(3) unsigned NOT NULL DEFAULT 1,
+  `image` varchar(1000) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -81,9 +71,23 @@ CREATE TABLE IF NOT EXISTS `curr_faq` (
   PRIMARY KEY (`id`),
   KEY `FK_curr_faq_board` (`board_id`) USING BTREE,
   KEY `FK_curr_faq_curriculum` (`curr_id`) USING BTREE,
-  CONSTRAINT `curr_faq_ibfk_1` FOREIGN KEY (`curr_id`) REFERENCES `curriculum` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `curr_faq_ibfk_2` FOREIGN KEY (`board_id`) REFERENCES `board` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `curr_faq_ibfk_1` FOREIGN KEY (`curr_id`) REFERENCES `curriculum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `curr_faq_ibfk_2` FOREIGN KEY (`board_id`) REFERENCES `board` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 test.curr_rv 구조 내보내기
+CREATE TABLE IF NOT EXISTS `curr_rv` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `curr_id` int(11) DEFAULT NULL,
+  `rv_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK__curriculum` (`curr_id`),
+  KEY `FK__sboard` (`rv_id`),
+  CONSTRAINT `FK__curriculum` FOREIGN KEY (`curr_id`) REFERENCES `curriculum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK__sboard` FOREIGN KEY (`rv_id`) REFERENCES `sboard` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -91,13 +95,13 @@ CREATE TABLE IF NOT EXISTS `curr_faq` (
 CREATE TABLE IF NOT EXISTS `curr_sbj` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `curr_id` int(11) DEFAULT NULL,
-  `sub_id` int(11) DEFAULT NULL,
+  `sbj_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK__curriculum` (`curr_id`) USING BTREE,
-  KEY `FK__subject` (`sub_id`) USING BTREE,
-  CONSTRAINT `curr_sbj_ibfk_1` FOREIGN KEY (`curr_id`) REFERENCES `curriculum` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `curr_sbj_ibfk_2` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `FK__subject` (`sbj_id`) USING BTREE,
+  CONSTRAINT `curr_sbj_ibfk_1` FOREIGN KEY (`curr_id`) REFERENCES `curriculum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `curr_sbj_ibfk_2` FOREIGN KEY (`sbj_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -111,30 +115,40 @@ CREATE TABLE IF NOT EXISTS `history` (
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
+-- 테이블 test.intro 구조 내보내기
+CREATE TABLE IF NOT EXISTS `intro` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(50) NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
+  `show` tinyint(3) unsigned DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='0: intro_head\r\n1: intro_content \r\n2: location_image\r\n3: location_content\r\n4: interior\r\n5: main_visual\r\n6: popup ';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 test.main_rv 구조 내보내기
+CREATE TABLE IF NOT EXISTS `main_rv` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rv_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK__board` (`rv_id`),
+  CONSTRAINT `FK__board` FOREIGN KEY (`rv_id`) REFERENCES `board` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
 -- 테이블 test.sboard 구조 내보내기
 CREATE TABLE IF NOT EXISTS `sboard` (
   `id` int(11) NOT NULL,
-  `writer` varchar(50) NOT NULL,
+  `writer` varchar(50) CHARACTER SET utf8 NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `subject` varchar(100) NOT NULL,
-  `content` text NOT NULL,
+  `subject` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `content` text CHARACTER SET utf8 NOT NULL,
   `hit` int(11) DEFAULT 0,
   `class_code` tinyint(4) NOT NULL,
   `type` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- 내보낼 데이터가 선택되어 있지 않습니다.
-
--- 테이블 test.sboard_image 구조 내보내기
-CREATE TABLE IF NOT EXISTS `sboard_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sboard_id` int(11) NOT NULL,
-  `iamge` varchar(1000) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `FK__board` (`sboard_id`) USING BTREE,
-  CONSTRAINT `sboard_image_ibfk_1` FOREIGN KEY (`sboard_id`) REFERENCES `sboard` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -142,10 +156,10 @@ CREATE TABLE IF NOT EXISTS `sboard_image` (
 CREATE TABLE IF NOT EXISTS `subject` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `img` varchar(1000) DEFAULT NULL,
+  `image` varchar(1000) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -157,10 +171,10 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `title` varchar(100) NOT NULL,
   `career` varchar(500) DEFAULT NULL,
   `content` text NOT NULL,
-  `iamge` varchar(1000) NOT NULL DEFAULT '',
+  `image` varchar(1000) NOT NULL DEFAULT '',
   `show` tinyint(3) unsigned DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 

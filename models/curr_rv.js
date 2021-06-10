@@ -1,28 +1,31 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('board_image', {
+  return sequelize.define('curr_rv', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    board_id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+    curr_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
-        model: 'board',
+        model: 'curriculum',
         key: 'id'
       }
     },
-    iamge: {
-      type: DataTypes.STRING(1000),
-      allowNull: false,
-      defaultValue: ""
+    rv_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'sboard',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
-    tableName: 'board_image',
+    tableName: 'curr_rv',
     timestamps: false,
     indexes: [
       {
@@ -34,10 +37,17 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK__board",
+        name: "FK__curriculum",
         using: "BTREE",
         fields: [
-          { name: "board_id" },
+          { name: "curr_id" },
+        ]
+      },
+      {
+        name: "FK__sboard",
+        using: "BTREE",
+        fields: [
+          { name: "rv_id" },
         ]
       },
     ]

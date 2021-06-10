@@ -24,23 +24,20 @@ let models = initModels(sequelize);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.board = models.board;
-db.board_image = models.board_image;
 db.consult = models.consult;
 db.history = models.history;
 db.teacher = models.teacher;
 db.curriculum = models.curriculum;
 db.subject = models.subject;
 db.sboard = models.sboard;
+db.intro = models.intro;
 db.curr_sbj = models.curr_sbj;
 
-// const { 
-//   curr_faq,
-//   curr_sbj,
-//   curriculum,
-//   history,
-//   sboard,
-//   sboard_image,
-//   subject,
-//   , } 
+
+// curr_faq,
+// curr_rv,
+// main_rv,
+// sboard,
+
 
 module.exports = db;

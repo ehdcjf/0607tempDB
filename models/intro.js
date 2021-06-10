@@ -1,45 +1,28 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('teacher', {
+  return sequelize.define('intro', {
     id: {
       autoIncrement: true,
-      type: DataTypes.TINYINT.UNSIGNED,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    name: {
-      type: DataTypes.STRING(100),
-      allowNull: false
-    },
-    position: {
+    content: {
       type: DataTypes.STRING(50),
       allowNull: false
     },
-    title: {
-      type: DataTypes.STRING(100),
+    type: {
+      type: DataTypes.TINYINT.UNSIGNED,
       allowNull: false
-    },
-    career: {
-      type: DataTypes.STRING(500),
-      allowNull: true
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    image: {
-      type: DataTypes.STRING(1000),
-      allowNull: false,
-      defaultValue: ""
     },
     show: {
       type: DataTypes.TINYINT.UNSIGNED,
       allowNull: true,
-      defaultValue: 0
+      defaultValue: 1
     }
   }, {
     sequelize,
-    tableName: 'teacher',
+    tableName: 'intro',
     timestamps: false,
     indexes: [
       {

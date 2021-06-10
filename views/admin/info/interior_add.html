@@ -16,7 +16,8 @@
       <div id="main">
        
         <form action="/admin/info/interior_add" method="post" enctype="multipart/form-data">
-        <input type="file" accept="image/*"  name = "img" onchange="setThumbnail(event);" required>
+          <div id="thumbnail"></div>
+        이미지:<input type="file" accept="image/*"  name ="img" onchange="setThumbnail(event);" required><br>
         <input type="submit" value="등록">
         </form>
 
