@@ -128,7 +128,7 @@ let control_curr = async(req,res)=>{
 
   let sortLi =[];
   sortSub.forEach(ele => {
-    sortLi.push(ele.dataValues.sub_id)
+    sortLi.push(ele.dataValues.sbj_id)
   });
 
   let sorted=[]; 
@@ -175,7 +175,7 @@ let update_curr = async(req,res)=>{
 
   subsort.split(',').forEach(async(v)=>{
     await curr_sbj.create({
-      curr_id:id, sub_id:v,
+      curr_id:id, sbj_id:v,
     })
   })
 
