@@ -20,10 +20,12 @@
  
           <div >
             <div>{{title}}작성</div>
-              <input type="hidden" name='type' value="{{type}}" id="type">
+            <form id="form" action="/admin/community/{{board_name}}/write" method="post">
+            
               제목:<input type="text" name='subject' id="subject">
               {% include "./summernote.html" %}
-        
+              
+            </form>
           </div>
           
     

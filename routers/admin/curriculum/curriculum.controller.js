@@ -52,6 +52,17 @@ let create_curr = async (req, res) => {
   res.redirect('/admin/curriculum/curr');
 }
 
+let destroy_curr = async (req,res)=>{
+  let {id} = req.body; 
+
+  let result = await curriculum.destroy({
+    where:{id}
+  })
+  res.json({result}); 
+}
+
+
+
 let create_sub = async (req, res) => {
   let { name, content } = req.body;
   let image = req.file.filename;
@@ -191,5 +202,5 @@ let update_curr = async(req,res)=>{
 
 module.exports = {
   show_curr, show_sub, create_curr, add_curr, add_sub,create_sub,
-  modify_sub,update_sub,destroy_sub,control_curr, update_curr, 
+  modify_sub,update_sub,destroy_sub,control_curr, update_curr, destroy_curr,
 }

@@ -2,28 +2,21 @@ const {intro} = require("../../../models")
 
 
 const intro_type = []; 
-intro_type[0] ='intro_head'
-intro_type[1] ='intro_content'
-intro_type[2] ='location_image'
-intro_type[3] ='location_content'
-intro_type[4] ='interior'
-intro_type[5] ='main_visual'
-intro_type[6] ='popup'
+intro_type[0] ='interior'
+intro_type[1] ='main_visual'
+intro_type[2] ='popup'
 
 
 let main = async(req, res) => {
   let result = await intro.findAll({
-    attributes:['id','content','show']
-  },{
-    where:{type:'5'}, 
+    where:{type:'1',} 
   })
-
+  console.log(result); 
   let resultArr = []; 
   result.forEach(ele => {
     resultArr.push(ele.dataValues); 
   });
 
-  console.log(resultArr); 
 
   res.render('./admin/main/visual.html',{
     resultArr, 
@@ -36,7 +29,7 @@ let add_mainv = (req,res)=>{
 
 let create_mainv = async(req,res)=>{
   let content = req.file.filename;
-  let type = '5'; 
+  let type = '1'; 
   await intro.create({
     content,type
   })

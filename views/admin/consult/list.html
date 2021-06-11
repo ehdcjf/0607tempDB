@@ -25,7 +25,6 @@
               <td>제목</td>
               <td>등록일</td>
               <td>작성자</td>
-              <td>조회수</td>
             </thead>
             <tbody>
               {% for item in result %}
@@ -36,7 +35,6 @@
                 </td>
                 <td>{{item.date}}</td>
                 <td>{{item.writer}}</td>
-                <td>{{item.hit}}</td>
               </tr>
               {% endfor %}
             </tbody>

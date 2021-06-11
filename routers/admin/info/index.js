@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const infoController = require('./info.controller')
-const boardController = require('../board/board.controller')
 const multer = require('multer'); //npm install multer
 const path = require('path'); //npm install path
 
@@ -18,18 +17,30 @@ const upload = multer({
 })
 
 
-router.get('/view', boardController.show_article);
-router.get('/modify', boardController.show_modify);
-router.post('/modify', boardController.modify_article);
-router.get('/list',boardController.show_list);
+
+ router.get('/intro', infoController.show_intro);
+ router.get('/intro/modify', infoController.modify_intro);
+ router.post('/intro/modify', infoController.update_intro);
+
+
+ router.post('/interior/create',upload.single('img'), infoController.create_interior);
+router.post('/interior/destroy', infoController.destroy_interior);
+router.get('/interior',infoController.interior);
+router.get('/interior/add',infoController.add_interior);
+router.post('/interior/update',infoController.update_interior);
+router.post('/interior/destroy',infoController.destroy_interior);
+
+// router.get('/modify', boardController.show_modify);
+// router.post('/modify', boardController.modify_article);
+// router.get('/list',boardController.show_list);
+// router.get('/interior_add',infoController.interior_add); 
+// router.post('/interior_add',upload.single('img'),infoController.create_interior); 
 
 router.get('/history', infoController.get_history);
 router.post('/dlthistory', infoController.dlt_history);
 router.post('/updatehistory',infoController.update_history);
 router.post('/addhistory', infoController.add_history);
 
-router.get('/interior_add',infoController.interior_add); 
-router.post('/interior_add',upload.single('img'),infoController.create_interior); 
 
 router.get('/teachers',infoController.get_teacher);
 router.get('/teacher/add', infoController.add_teacher);

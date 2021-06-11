@@ -52,7 +52,7 @@
 
             //값 가져오기
             let summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
-            sendPost("/admin/community/write",{content:summernoteContent,});
+            sendPost({content:summernoteContent,});
 
         }
 
@@ -65,16 +65,10 @@
 
 //javascript에서 post방식으로 데이터 전송
 
-function sendPost(path,params){
+function sendPost(params){
 
-let form = document.createElement("form");
-form.setAttribute("method", 'post');
-form.setAttribute("action", path);
+let form = document.querySelector("#form");
 
-const type = document.querySelector('#type');
-const subject = document.querySelector('#subject');
-form.appendChild(type);
-form.appendChild(subject);
 
 //히든으로 값을 주입시킨다.
 
@@ -91,7 +85,6 @@ for(let key in params) {
     
   }
 
-  document.body.appendChild(form);
   form.submit(); 
 }
 

@@ -106,3 +106,30 @@ function postcurr(){
   if(sortLi())
   form.submit(); 
 }
+
+
+async function destroy_curr(){
+  let tbody = document.querySelector('.tbody'); 
+
+ if(confirm("정말 삭제하시겠습니까?")){
+   //true
+   let id =  this.event.path[0].dataset.idx;
+  let tr = this.event.path[0].parentNode.parentNode; 
+   let url = 'http://localhost:3000/admin/curriculum/curr/destroy'
+   let options = {
+     method: 'POST',
+     headers: {
+       'content-type': 'application/json',
+     },
+     body: JSON.stringify({
+       id,
+     }),
+   }
+   let response = await fetch(url, options);
+   if(response.ok){
+     tbody.removeChild(tr); 
+     alert('삭제되었습니다'); 
+   }
+ }
+ return; 
+}

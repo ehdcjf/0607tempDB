@@ -2,6 +2,8 @@ const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('sboard', {
     id: {
+      autoIncrement: true,
+
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -11,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       defaultValue: Sequelize.Sequelize.fn('current_timestamp')
     },

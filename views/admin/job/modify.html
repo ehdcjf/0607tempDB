@@ -15,32 +15,46 @@
     })
   </script>
 </head>
-
 <body>
   <div id="wrap">
     <div id="container1900">
       {% include "../layout/gnb.html" %}
-      {% include "../layout/community_snb.html" %}
+      {% include "../layout/job_snb.html" %}
       <div id="main">
 
         <div>
           <div>{{result.subject}} 수정</div>
-          <form id='form' action="/admin/community/{{board_name}}/modify" method="post">
+          <form id="form" action="/admin/job/{{title1}}/modify" method="post">
+          <input type="hidden" id="code" value="{{result.class_code}}">
+          <div>
+            {% for item in curr %}
+            <div>
+              <label for="curr{{item.id}}">{{item.name}}</label>  
+              <input type="radio" name="curriculum" value="{{item.id}}" id="curr{{item.id}}">
+            </div>
+            {% endfor %}
+          </div>
             <input type="hidden" name='id'  value="{{result.id}}">
-            제목:<input type="text" name='subject' value="{{result.subject}}">
+            제목:<input type="text" name='subject'  value="{{result.subject}}">
             {% include "./summernote_modify.html" %}
           </form>
         </div>
           
     
 
-
+ 
       </div>
     </div>
   </div>
 
   
-  
+  {% if result.class_code %}
+  <script type="text/javascript">
+  let code = document.querySelector('#code').value; 
+  let check = document.querySelector('#curr'+code); 
+  check.checked='checked'; 
+  </script>
+  {% endif %}
   
   
 </body>

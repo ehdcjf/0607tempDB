@@ -19,6 +19,7 @@ const upload = multer({
 router.get('/curr', currController.show_curr);
 router.get('/subject', currController.show_sub);
 router.get('/curr/add', currController.add_curr);
+router.post('/curr/destroy', currController.destroy_curr);
 router.get('/subject/add', currController.add_sub);
 router.post('/curr/add', upload.single('img'), currController.create_curr);
 router.post('/subject/add', upload.single('img'), currController.create_sub);

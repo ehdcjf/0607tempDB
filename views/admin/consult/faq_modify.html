@@ -18,8 +18,8 @@
       <div id="main">
         <div>
           <h3>faq 수정</h3>
-          <form action="/admin/consult/faq_modify" method="post">
-            <input type="hidden" name="id" value="{{reault.id}}">
+          <form action="/admin/consult/faq/modify" method="post">
+            <input type="hidden" name="id" value="{{result.id}}">
             Q: <input type="text" name="subject" id="subject" value="{{result.subject}}">
             A: <textarea name="content" id="content" cols="30" rows="10">{{result.content}}</textarea>
             <input type="submit" value="등록">

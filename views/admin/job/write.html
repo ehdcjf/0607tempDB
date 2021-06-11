@@ -14,16 +14,23 @@
   <div id="wrap">
     <div id="container1900">
       {% include "../layout/gnb.html" %}
-      {% include "../layout/consult_snb.html" %}
+      {% include "../layout/job_snb.html" %}
       <div id="main">
-        <div>
-          <h3>faq작성</h3>
-          <form action="/admin/consult/faq/write" method="post">
-            Q: <input type="text" name="subject" id="subject">
-            A: <textarea name="content" id="content" cols="30" rows="10"></textarea>
-            <input type="submit" value="등록">
-          </form>
-        </div>
+
+ 
+          <div >
+            <div>{{title2}} 작성</div>
+            <form id="form" action="/admin/job/{{title1}}/write" method="POST">
+              {% include "./curr_radio.html" %}
+              제목:<input type="text" name='subject' id="subject">
+              {% include "./summernote.html" %}
+            </form>
+        
+          </div>
+          
+    
+
+
       </div>
     </div>
   </div>
@@ -34,3 +41,5 @@
 </body>
 
 </html>
+
+

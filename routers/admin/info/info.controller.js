@@ -1,5 +1,56 @@
-const {board,teacher,history} = require("../../../models")
+const {board,teacher,history,intro} = require("../../../models");
 
+const intro_type = []; 
+intro_type[2] ='location_image'
+intro_type[3] ='location_content'
+intro_type[4] ='interior'
+intro_type[5] ='main_visual'
+intro_type[6] ='popup'
+
+////인사말 
+
+let show_intro = async(req,res)=>{
+  let result = await board.findOne({
+    attributes:['content', 'subject','writer']
+  },{
+    where:{id:'1'}
+  })
+  result = result.dataValues;
+
+  res.render('./admin/info/intro.html',{
+    result, 
+  })
+
+}
+
+let modify_intro = async(req,res)=>{
+  let result = await board.findOne({
+    attributes:['content', 'subject','writer']
+  },{
+    where:{id:'1'}
+  })
+  result = result.dataValues;
+
+  res.render('./admin/info/intro_modify.html',{
+   result, 
+  })
+}
+
+let update_intro = async(req,res)=>{ 
+  let{content,subject,writer} = req.body; 
+
+  let result = await board.update({
+    content,subject,writer
+  },{
+    where:{id:'1'}
+  })
+  res.redirect('/admin/info/intro'); 
+}
+
+
+
+
+////////////////////////////////////////////연혁
 let get_history = async(req,res)=>{ 
   let result = await history.findAll({
     order:[['year','ASC']]
@@ -59,7 +110,7 @@ let update_history = async(req,res)=>{
   res.json({flag:result[0]}); 
 }
 
-
+//////////////////////교직원소개
 let get_teacher = async(req,res)=>{ 
   let result = await teacher.findAll({
   }); 
@@ -127,26 +178,61 @@ let destroy_teacher = async(req,res)=>{
   res.redirect('/admin/info/teachers'); 
 }
 
-let interior_add = (req,res)=>{ 
-  res.render('./admin/info/interior_add'); 
-}
 
 
-let create_interior = async(req,res)=>{ 
-  let subject = "시설소개"
-  let content =req.file.filename; 
-  let writer = "관리자"
-  let type = "2"
-
-  let result = await board.create({
-    writer, subject, content, type
+/////////////////////시설소개
+let interior = async(req, res) => {
+  let result = await intro.findAll({
+    where:{type:'0',} 
+  })
+  let resultArr = []; 
+  result.forEach(ele => {
+    resultArr.push(ele.dataValues); 
   });
 
-  res.redirect('/admin/info/list?type=2'); 
+
+  res.render('./admin/info/interior.html',{
+    resultArr, 
+  });
 }
 
+let add_interior = (req,res)=>{
+  res.render('./admin/info/interior_add.html'); 
+}
+
+let create_interior = async(req,res)=>{
+  let content = req.file.filename;
+  let type = '0'; 
+  await intro.create({
+    content,type
+  })
+
+  res.redirect('/admin/info/interior/'); 
+}
+
+let update_interior = async(req,res)=>{
+  let {id,show} = req.body; 
+
+  let result = await intro.update({
+    show, 
+  },{
+    where:{id},
+  }) 
+  res.json({result}) 
+}
+
+let destroy_interior = async(req,res)=>{
+  let {id} = req.body; 
+
+  let result = await intro.destroy({
+    where:{id}, 
+  })
+  res.json({result}); 
+
+}
 module.exports = {
-  interior_add ,create_interior,
+ show_intro, modify_intro,update_intro,
+ interior ,create_interior,destroy_interior,update_interior,add_interior, 
   get_teacher, add_teacher, create_teacher,modify_teacher ,destroy_teacher,update_teacher,
   get_history,add_history,dlt_history,update_history,
 

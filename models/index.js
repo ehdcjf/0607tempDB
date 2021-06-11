@@ -31,13 +31,13 @@ db.curriculum = models.curriculum;
 db.subject = models.subject;
 db.sboard = models.sboard;
 db.intro = models.intro;
+db.sboard = models.sboard;
 db.curr_sbj = models.curr_sbj;
 
 
 // curr_faq,
 // curr_rv,
 // main_rv,
-// sboard,
 
 
 module.exports = db;
